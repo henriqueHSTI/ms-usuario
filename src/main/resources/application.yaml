@@ -1,0 +1,13 @@
+server:
+  port: 8080
+  name: Ms Usuário
+
+spring:
+  config:
+    profiles:
+      active: dev
+  data:
+    mongodb:
+      auto-index-creation: true
+      uri: mongodb://localhost:27017/user-blood-testing?retryWrites=true&w=majority
+
