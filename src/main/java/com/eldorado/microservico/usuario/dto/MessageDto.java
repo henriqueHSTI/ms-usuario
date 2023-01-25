@@ -1,5 +1,6 @@
 package com.eldorado.microservico.usuario.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +14,7 @@ public class MessageDto {
 
     String to;
     String subject;
+    @JsonIgnore
     String password;
     String message;
 
@@ -20,8 +22,7 @@ public class MessageDto {
     public String toString() {
         return "MessageDto{" +
                 "to='" + to + '\'' +
-                ", subject='" + subject + '\'' +
-                ", message='" + message + '\'' +
+                ", subject='" + subject +
                 '}';
     }
 }

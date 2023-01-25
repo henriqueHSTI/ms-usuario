@@ -4,9 +4,12 @@ package com.eldorado.microservico.usuario.service;
 import com.eldorado.microservico.usuario.domain.model.UserEntity;
 import com.eldorado.microservico.usuario.dto.MessageDto;
 import com.eldorado.microservico.usuario.dto.UserDto;
+import com.eldorado.microservico.usuario.publisher.UserPublisher;
 import com.eldorado.microservico.usuario.repository.UserRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.hash.Hashing;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -23,8 +26,12 @@ public class UserService {
 
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
-    private final String MESSAGE = "Cadastro realizado\nUsuario: %s\nSenha: %s";
-    private final String SUBJECT = "NÃO RESPONDA";
+    private static final String MESSAGE = "Cadastro realizado\nUsuario: %s\nSenha: %s";
+    private static final String SUBJECT = "NÃO RESPONDA";
+
+    private final ObjectMapper objectMapper;
+
+    private final UserPublisher userPublisher;
 
     public UserDto createUser(@Validated UserDto userDto) {
         var userEntity = modelMapper.map(userDto, UserEntity.class);
@@ -43,6 +50,7 @@ public class UserService {
         return userDto;
     }
 
+    @SneakyThrows
     private void sendMessage(UserDto userDto, String password) {
         var message = MessageDto
                 .builder()
@@ -51,6 +59,7 @@ public class UserService {
                 .subject(SUBJECT)
                 .build();
 
+        userPublisher.sendToQueue(objectMapper.writeValueAsString(message));
         log.info("Message to queue {}", message);
     }
 
