@@ -1,0 +1,22 @@
+server:
+  port: 8080
+  name: Ms Usuario
+
+spring:
+  data:
+    mongodb:
+      auto-index-creation: true
+      uri: mongodb://localhost:27017/user-blood-testing?retryWrites=true&w=majority
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: local-vh
+  main:
+    allow-bean-definition-overriding: true
+
+springdoc:
+  swagger-ui:
+    path: /user-api-docs
+  paths-to-match: /**/user/**
