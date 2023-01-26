@@ -20,3 +20,7 @@ springdoc:
   swagger-ui:
     path: /user-api-docs
   paths-to-match: /**/user/**
+
+eldorado:
+  jwt:
+    secret: minhasecret124
