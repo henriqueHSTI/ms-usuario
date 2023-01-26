@@ -18,9 +18,9 @@ spring:
 
 springdoc:
   swagger-ui:
-    path: /user-api-docs
+    path: /user-api-docs.html
   paths-to-match: /**/user/**
 
 eldorado:
   jwt:
-    secret: minhasecret124
+    secret: minhasecret123
