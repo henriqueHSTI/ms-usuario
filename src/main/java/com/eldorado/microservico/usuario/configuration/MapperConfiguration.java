@@ -10,4 +10,6 @@ public class MapperConfiguration {
     public ObjectMapper objectMapper() {
         return new ObjectMapper();
     }
+
+
 }

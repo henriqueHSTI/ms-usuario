@@ -14,5 +14,4 @@ public class OpenApiDocumentConfiguration {
                 .description("MS - Usuario")
                 .version("1.0.0"));
     }
-
 }
