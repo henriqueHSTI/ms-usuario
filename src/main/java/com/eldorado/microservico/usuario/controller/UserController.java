@@ -25,7 +25,12 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public ResponseEntity<UserDto> createUser(@RequestBody UserLoginDto userLoginDto) {
+    public ResponseEntity<UserDto> getLogin(@RequestBody UserLoginDto userLoginDto) {
         return ResponseEntity.ok(userService.login(userLoginDto));
+    }
+
+    @GetMapping("/test")
+    public ResponseEntity<String> getTest(@RequestBody UserLoginDto userLoginDto) {
+        return ResponseEntity.ok("Isso é Um teste");
     }
 }
