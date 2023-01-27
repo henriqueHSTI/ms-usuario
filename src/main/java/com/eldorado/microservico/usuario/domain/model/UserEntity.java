@@ -23,7 +23,7 @@ public class UserEntity {
     @NonNull
     private LocalDate birthDate;
     @NonNull
-    private String email;
+    private String userName;
     private String password;
 
     private AddressEntity addressEntity;
@@ -35,7 +35,7 @@ public class UserEntity {
                 ", name='" + name + '\'' +
                 ", gender=" + gender +
                 ", birthDate=" + birthDate +
-                ", email='" + email + '\'' +
+                ", email='" + userName + '\'' +
                 '}';
     }
 }

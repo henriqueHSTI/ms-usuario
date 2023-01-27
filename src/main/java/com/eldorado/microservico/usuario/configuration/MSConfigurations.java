@@ -8,6 +8,8 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class MSConfigurations {
@@ -15,9 +17,6 @@ public class MSConfigurations {
     public ObjectMapper objectMapper() {
         return new ObjectMapper();
     }
-
-    @Bean
-    public AuthUtils authUtils() {  return new AuthUtils();   }
 
     @Bean
     public ModelMapper modelMapper() {
@@ -31,6 +30,16 @@ public class MSConfigurations {
         return new OpenAPI().info(new Info().title("MS-Usuário")
                 .description("MS - Usuario")
                 .version("1.0.0"));
+    }
+
+    @Bean
+    public AuthUtils authUtils() {
+        return new AuthUtils();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 

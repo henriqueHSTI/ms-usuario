@@ -23,7 +23,7 @@ public class UserDto {
     @NonNull
     private String document;
     @NonNull
-    private String email;
+    private String userName;
 
     private AddressDto addressDto;
 
