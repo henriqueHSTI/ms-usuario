@@ -24,9 +24,10 @@ public class UserController {
         return ResponseEntity.ok(userService.createUser(userDto));
     }
 
-    @GetMapping("/login")
-    public ResponseEntity<UserDto> getLogin(@RequestBody UserLoginDto userLoginDto) {
-        return ResponseEntity.ok(userService.login(userLoginDto));
+    @PostMapping("/login")
+    public ResponseEntity<UserDto> getLogin(@RequestBody UserLoginDto loginDto) {
+
+        return ResponseEntity.ok(userService.login(loginDto));
     }
 
     @GetMapping("/test")

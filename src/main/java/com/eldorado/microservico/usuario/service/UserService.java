@@ -2,7 +2,6 @@ package com.eldorado.microservico.usuario.service;
 
 
 import com.eldorado.commons.dto.UserLoginDto;
-import com.eldorado.commons.exceptions.NicolayException;
 import com.eldorado.commons.exceptions.NotFoundException;
 import com.eldorado.microservico.usuario.domain.model.UserEntity;
 import com.eldorado.microservico.usuario.dto.MessageDto;
@@ -66,19 +65,12 @@ public class UserService {
     @SneakyThrows
     public UserDto login(UserLoginDto userLoginDto) {
 
-        try {
-            var user = userRepository.findByUserName(userLoginDto.getUserName())
-                    .orElseThrow(() -> new NotFoundException("Invalid Access"));
+        log.info("Retrieve information to login {}", userLoginDto.getUserName());
 
-            if (!passwordEncoder.matches(userLoginDto.getPassword(), user.getPassword())) {
-                log.error("Invalid Password");
-                throw new NotFoundException("Invalid Access");
-            }
-            return modelMapper.map(user, UserDto.class);
+        var user = userRepository.findByUserName(userLoginDto.getUserName())
+                .orElseThrow(() -> new NotFoundException("Invalid Access"));
 
-        } catch (Exception exception) {
-            throw new NicolayException("Palmeiras não tem mundial!!!");
-        }
+        return modelMapper.map(user, UserDto.class);
 
 
     }

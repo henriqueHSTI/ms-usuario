@@ -1,5 +1,6 @@
 package com.eldorado.microservico.usuario.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDto {
 
     @NonNull
@@ -25,6 +27,8 @@ public class UserDto {
     private String document;
     @NonNull
     private String userName;
+
+    private String password;
 
     private AddressDto addressDto;
 
